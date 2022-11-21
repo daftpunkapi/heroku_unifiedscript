@@ -6,11 +6,13 @@ from pymongo import MongoClient
 class MongoAPI:
     def __init__(self, data):
         self.client = MongoClient("mongodb+srv://daft:punk@mergedev.iiiixxn.mongodb.net/?retryWrites=true&w=majority")  
-        database = data["database"]
-        collection = data["collection"]
+        database = "Ticket_Common_Model"
+        collection = data
         cursor = self.client[database]
         self.collection = cursor[collection]
-        self.data = data
+        # self.data = data
+
+
 
 # This method will allow us to read all of the documents present in our collection. Line number 3 is used to reformat the data. The output of the collection object is of datatype dictionary
     def read(self):
@@ -25,7 +27,7 @@ app.config['JSON_SORT_KEYS'] = False
 # HTTP Method via Flask Routes
 @app.route('/tickets', methods=['GET'])
 def mongo_read():
-    data = request.json
+    data = request.headers['Account-Token']
     obj1 = MongoAPI(data)
     response = obj1.read()
     return Response(response=json.dumps(response),
