@@ -4,7 +4,7 @@ from pymongo import MongoClient
 import pymongo
 # import pandas as pd
 
-# Create Connect with MongoDB
+# Create user defined class MongoAPI
 class MongoAPI:
     def __init__(self, data):
         self.client = MongoClient("mongodb+srv://daft:punk@mergedev.iiiixxn.mongodb.net/?retryWrites=true&w=majority")  
